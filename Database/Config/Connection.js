@@ -12,7 +12,7 @@ export async function connect(done) {
   try {
     await client.connect((err, data) => {
       if (err) return err;
-      state.db = client.db("chat");
+      state.db = client.db("files");
       console.log("Database connected");
     });
   } catch (e) {

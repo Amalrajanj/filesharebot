@@ -11,8 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@grammyjs/stateless-question": "^3.0.1",
     "dotenv": "^16.0.1",
     "grammy": "^1.10.1",
-    "mongodb": "^4.9.0"
+    "mongodb": "^4.9.0",
+    "uuid": "^8.3.2"
   }
 }
