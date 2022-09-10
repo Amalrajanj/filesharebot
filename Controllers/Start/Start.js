@@ -2,6 +2,7 @@ import { InlineKeyboard } from "grammy";
 import { db } from "../../Database/Actions/Queries.js";
 import { SubAdminkeyboard } from "../Buttons/InlineKeyboard.js";
 import { AdminStart } from "./Admin.js";
+import { customProps } from "./Custom.js";
 import { handlequery } from "./Handlequery.js";
 import { SubadminStart } from "./Subadmin.js";
 
@@ -28,15 +29,24 @@ export const start = async (ctx) => {
           ctx.from.id
         )
         .then(async (status) => {
-          if (status.status == "!left") {
+          if (status.status != "left") {
             if (query) {
               handlequery(ctx);
             } else if (res) {
               if (ctx.from.id == process.env.ADMIN_ID) {
                 AdminStart(ctx);
               } else if (res?.admin == true) {
-                console.log(1);
                 SubadminStart(ctx);
+              } else {
+                let custom = await db.getcustom();
+                ctx.reply(
+                  `<b>${
+                    custom?.welcome ? custom.welcome : customProps.welcome
+                  }</b>`,
+                  {
+                    parse_mode: "HTML",
+                  }
+                );
               }
             } else {
               console.log("check user failed");

@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
+import express from "express";
+const app = express();
 import { Bot } from "grammy";
 import {
   addnewAdminQuestion,
@@ -76,3 +78,5 @@ bot.callbackQuery(/SET_(.*)/g, handleConfigCallback);
 bot.callbackQuery("CHECK_CHANNEL", CheckChannel);
 // Bot config
 bot.start();
+
+app.listen(process.env.PORT || 3000);

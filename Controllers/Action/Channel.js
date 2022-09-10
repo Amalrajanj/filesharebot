@@ -1,5 +1,6 @@
 import { db } from "../../Database/Actions/Queries.js";
 import { InlineKeyboard } from "grammy";
+import { customProps } from "../Start/Custom.js";
 
 export const CheckChannel = async (ctx) => {
   ctx.deleteMessage();
@@ -9,7 +10,7 @@ export const CheckChannel = async (ctx) => {
     .then(async (stats) => {
       if (stats?.status != "left") {
         ctx.reply(
-          `<b>I will store files for you and generate sharable links</b>`,
+          `<b>${custom?.welcome ? custom.welcome : customProps.welcome}</b>`,
           {
             parse_mode: "HTML",
           }

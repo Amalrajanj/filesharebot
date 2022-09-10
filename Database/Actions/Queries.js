@@ -307,6 +307,9 @@ export const db = {
                 });
             } else {
               getdb()
+                .collection(collection.BROADCAST_COLLECTION)
+                .createIndex({ ADMIN: 1 }, { unique: true, dropDups: true });
+              getdb()
                 .collection(collection.CUSTOM_COLLECTION)
                 .insertOne(data)
                 .then((res) => {

@@ -11,14 +11,13 @@ export const configbot = (ctx) => {
       .text("Channel ID", "SET_CHANNEL_ID");
     if (ctx.from.id == process.env.ADMIN_ID || res?.admin) {
       db.getcustom().then((custom) => {
-        console.log(custom);
         ctx.reply(
           `<i>You can customize bot choose the options below</i>\n\n<b>Welcome:</b><code> ${
-            custom ? custom.welcome : customProps.welcome
+            custom?.welcome ? custom.welcome : customProps.welcome
           }</code>\n<b>Channel Link:</b> <code> ${
-            custom ? custom.channelLink : process.env.INVITE_LINK
+            custom?.channelLink ? custom.channelLink : process.env.INVITE_LINK
           }</code>\n<b>Channel ID:</b> <code> ${
-            custom ? custom.channelID : process.env.MAIN_CHANNEL
+            custom?.channelID ? custom.channelID : process.env.MAIN_CHANNEL
           }</code>`,
           {
             parse_mode: "HTML",
