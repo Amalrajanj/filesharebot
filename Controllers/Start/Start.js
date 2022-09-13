@@ -15,13 +15,14 @@ export const start = async (ctx) => {
     banStatus: false,
   };
 
-  try {
-    await db.saveUser(user).then((res) => {
+  await db
+    .saveUser(user)
+    .then((res) => {
       !res ? console.log("saveUser failed") : "";
+    })
+    .catch((e) => {
+      console.log("err");
     });
-  } catch (error) {
-    console.log("dberr");
-  }
 
   await db.checkUser(ctx.from.id).then(async (res) => {
     if (!res?.banStatus) {
